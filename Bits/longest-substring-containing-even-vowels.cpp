@@ -1,4 +1,5 @@
 class Solution {
+
 public:
 int c_m[26] = {1,0,0,0,2,0,0,0,4,0,0,0,0,0,8,0,0,0,0,0,16,0,0,0,0,0};  
 	int findTheLongestSubstring(string s) {
@@ -13,4 +14,5 @@ int c_m[26] = {1,0,0,0,2,0,0,0,4,0,0,0,0,0,8,0,0,0,0,0,16,0,0,0,0,0};
 		}
 		return res;
 	}
+	
 };
