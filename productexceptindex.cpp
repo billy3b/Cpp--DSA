@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include <vector>
+------- 
+    //Time complexity O(N^2)
 using namespace std;
 
 vector<int> productexcepti(vector<int>& arr){
@@ -23,6 +25,21 @@ vector<int> productexcepti(vector<int>& arr){
         
     return output;
 }
+-----------
+//optimised code with time complexity O(N)
+    vector<int> productExceptSelf(vector<int>& arr) {
+    int n=arr.size();
+    int suffixprod=1;
+    vector<int> output(size(arr),1);
+    for(int i=1;i<n;i++)
+        output[i] = output[i-1]*arr[i-1];
+    for(int j=n-1;j>=0;j--){
+        output[j] = output[j] * suffixprod;
+        suffixprod = suffixprod*arr[j];
+        }
+    return output;
+    }
+
 int main() {
     vector<int> arr ={10,2,3,5,7};
     vector<int> output = productexcepti(arr);
