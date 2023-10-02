@@ -1,3 +1,5 @@
+*******************************************************************Approach1******************************************************************************************
+                                                                   //Recursion
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -17,3 +19,34 @@ public:
         return head;
     }
 };
+
+********************************************************************Approach2***************************************************************************************                                                                   //Iterative
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        // Create a dummy node to serve as the new head.
+        ListNode* dummy = new ListNode(-1);
+        dummy->next = head;
+        
+        ListNode* current = dummy;
+        
+        while (current->next) {
+            if (current->next->val == val) {
+                // Found a node with the value to be removed, skip it.
+                ListNode* toRemove = current->next;
+                current->next = current->next->next;
+                delete toRemove;
+            } else {
+                // Move to the next node.
+                current = current->next;
+            }
+        }
+        
+        // The modified list starts from dummy->next.
+        head = dummy->next;
+        delete dummy; // Delete the dummy node.
+        
+        return head;
+    }
+};
+
