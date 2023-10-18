@@ -1,19 +1,23 @@
 class Solution {
 public:
     vector<int> numMovesStones(int a, int b, int c) {
-        int mn = min(a,min(b,c));
-        int mx = max(a,max(b,c));
-        int md = a + b + c - mx - mn;
-        if(mx==md+1  && md==mn+1){
-            return {0,0};
-        }
-        int ans = md - mn - 1 + mx - md - 1;
-        if(mx==md+1 || md==mn+1){
-            return {1,ans};
-        }
-        if(mx==md+2 || md==mn+2){
-            return {1,ans};
-        }
-        return {2,ans};
+        vector< int> v{a,b,c};
+        vector< int> res;
+        sort(v.begin(), v.end());
+        a = v[0];
+        b = v[1];
+        c = v[2];
+
+        int ans = (b-a-1) + (c-b-1);
+
+        res.push_back(ans);
+        ans = 0;
+
+        if(a+1!=b) ans++;
+        if(b+1!=c) ans++;
+        if(b-a == 2 || c-b == 2) ans = 1; 
+        res.push_back(ans);
+        reverse(res.begin(),res.end());
+        return res;
     }
 };
